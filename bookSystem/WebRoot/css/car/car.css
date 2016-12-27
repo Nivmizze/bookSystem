@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+.*{padding: 0px;margin: 0px;}
+/*noneCar.jsp*/
+#divmain{border: 5px #ddd solid;padding:10px;margin-top: 35px;}
+.body{width: 80%;height: 100%;background-color: #EAE4DB;margin: 0 auto;}
+.gologin{margin-left: 233px;width:200px;height: 50px;font-size: 20px;float: left;}
+.goonscan{font-size:20px;float:left;}
+/*shoppingcar.jsp*/
+#title{height:60px;width:100%;background-color: EDEDED}
+#container{background-color: EDEDED;width: 90%;margin: 0 auto;}
+#orders{background-color: white;width:100%;height:100px;position: relative;}
+#ct{position: relative;top:15px;width:100%}
+#ct1{width:28%;}
+#ct2{width:28%;}
+#ct3{width:11%;}
+#ct4{width:11%;}
+#ct5{width:11%;}
+#ct6{width:11%;}
+#ot{position: relative;width:100%}
+#ot1{width:11%;height:100px}
+#ot2{width:28%;height:100px}
+#ot3{width:11%;height:100px}
+#ot4{width:11%;height:100px}
+#ot5{width:11%;height:100px}
+#ot6{width:11%;height:100px}
+.divimg{width: 103px;height: 93px;}
+.book_img{width: 100%;height: 100%;}
+#bottom{height:130px;width:100%;position: relative;background-color: white}
+#del{position: relative;left:20px;}
+#jt1{width:690px;height:65px;}
+#jt2{width:690px;height:65px;text-align: right;}
+#jt3{width:1380px;height:63px;text-align: right; }
+.summary{right: 12%;position: fixed;}
+a{text-decoration: none;}
+#temp{height:10px;width:100%;}
+#subm{height:42px;width:189px;}
+.num{width:25px;height:25px}
+.sub{height:17px;width:17px;border:1px black solid;position: relative;background-color: white;border-color: EDEDED}
+.add{height:17px;width:17px;border:1px black solid;position: relative;background-color: white;border-color: EDEDED}
+#td{background-color: EDEDED;width:100%;height:100px;}
+#bt{width:100%;height:20px;background-color: EDEDED}
+#tab{width:100%}

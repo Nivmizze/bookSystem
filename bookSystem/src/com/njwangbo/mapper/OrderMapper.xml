@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njwangbo.mapper.OrderMapper">
+
+    <!-- 用户订单分页 排序-->
+	<select id="findOrderByUid" resultType="Order">
+	select * 
+	from 
+	t_order
+	where 
+	uid = #{0}
+	order by ordertime desc
+	limit
+	#{1},
+	#{2}
+	</select>
+	<!-- 用户所有订单 -->
+	<select id="findAllOrder" resultType="Order" parameterType="string">
+    select *
+    from
+    t_order
+    where 
+    uid = #{uid} 
+    </select>
+    
+    <select id="findAllOrderinfo" resultType="Order" parameterType="string">
+    select *
+    from
+    t_order
+    where 
+    oid = #{oid} 
+    </select>
+    <!-- 修改订单状态 -->
+    <update id="updateOrderStatus" parameterType="Order">
+    update 
+    t_order
+    set 
+    status = 1
+    where 
+    oid = #{oid}
+    </update>
+    
+    <update id="updateOrderStatuscancel" parameterType="Order">
+    update 
+    t_order
+    set 
+    status = 4
+    where 
+    oid = #{oid}
+    </update>
+    
+    <update id="updateOrderStatusGet" parameterType="Order">
+    update 
+    t_order
+    set 
+    status = 3
+    where 
+    oid = #{oid}
+    </update>
+    <!-- 添加订单 -->
+    <insert id="addorder" parameterType="Order">
+    insert 
+    into 
+    t_order
+    (oid,ordertime,total,status,address,uid)
+    values
+    (#{oid},now(),#{total},'0',#{address},#{uid})
+    </insert>
+    <!--后台订单-->
+    
+    <!--
+
+    <select id="findOrderBystatus" resultType="Order">
+	select * 
+	from 
+	t_order
+	where 
+	status = #{0}
+	limit
+	#{1},
+	#{2}
+	</select>
+	
+	-->
+	<!-- 所有订单排序 -->
+	<select id="finAllOrders" resultType="Order">
+	select *
+	from
+	t_order
+	order by ordertime desc
+	</select>
+	<!-- 订单状态分页 -->
+    <select id="findOrderBystatus" resultType="Order" parameterType="Order">
+	select * 
+	from 
+	t_order
+	<where>
+	   <if test="5 != status ">
+	   and status = #{status}
+	   </if>
+	</where>
+	order by ordertime desc
+	limit
+	#{startRow},
+	#{pageSize}
+	</select>
+	
+	 <update id="updateadOrderStatus" parameterType="Order">
+    update 
+    t_order
+    set 
+    status = 2
+    where 
+    oid = #{oid}
+    </update>
+
+</mapper>

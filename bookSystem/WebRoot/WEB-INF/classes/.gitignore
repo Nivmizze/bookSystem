@@ -1,0 +1,9 @@
+/META-INF/
+/SqlMapConfig.xml
+/applicationContext-dao.xml
+/applicationContext-mvc.xml
+/applicationContext-service.xml
+/applicationContext-tx.xml
+/com/
+/errormessage.properties
+/log4j.properties

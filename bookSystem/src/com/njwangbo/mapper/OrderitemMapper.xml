@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njwangbo.mapper.OrderitemMapper">
+
+    
+	<!--<select id="findOrderByUid" resultType="Order">
+	select * 
+	from 
+	t_order
+	where 
+	uid = #{0}
+	limit
+	#{1},
+	#{2}
+	</select>
+	
+	-->
+	<!-- 订单详情 -->
+	<select id="finditembyOid" resultType="Orderitem" parameterType="string">
+    select *
+    from
+    t_orderitem
+    where 
+    oid = #{oid} 
+    </select>
+    <!-- 添加订单 -->
+    <insert id="additem" parameterType="Orderitem">
+    insert 
+    into
+    t_orderitem
+    ()
+    values
+    (#{orderItemId},#{quantity},#{subtotal},#{bid},#{bname},#{currPrice},#{image_b},#{oid})
+    </insert>
+</mapper>

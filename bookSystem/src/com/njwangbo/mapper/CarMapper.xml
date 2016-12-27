@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace：需要和Mapper接口的名字(全路径名)保持一致 -->
+  <mapper namespace="com.njwangbo.mapper.CarMapper">
+  
+  	<!-- 购物车与其中的所有的书籍的映射 -->
+  	<resultMap type="com.njwangbo.po.CartItem" id="cartItemBookMap">
+  		<id column="cartItemId" property="cartItemId"/>
+  		<result column="quantity" property="quantity"/>
+  		<result column="bid" property="bid"/>
+  		<result column="uid" property="uid"/>
+  		<association property="book" javaType="Book">
+  			<id column="bookid" property="bid"/>
+  			<result column="bname" property="bname"/>
+  			<result column="author" property="author"/>
+  			<result column="price" property="price"/>
+  			<result column="currPrice" property="currPrice"/>
+  			<result column="discount" property="discount"/>
+  			<result column="press" property="press"/>
+  			<result column="publishtime" property="publishtime"/>
+  			<result column="edition" property="edition"/>
+  			<result column="pageNum" property="pageNum"/>
+  			<result column="wordNum" property="wordNum"/>
+  			<result column="printtime" property="printtime"/>
+  			<result column="booksize" property="booksize"/>
+  			<result column="paper" property="paper"/>
+  			<result column="cid" property="cid"/>
+  			<result column="image_w" property="image_w"/>
+  			<result column="image_b" property="image_b"/>
+  			<result column="orderBy" property="orderBy"/>
+  		</association>
+  	</resultMap>
+  	<!-- 查询当前用户购物车所有的书籍 -->
+  	<select id="findBooksByUid" parameterType="String" resultMap="cartItemBookMap">
+  		select 
+			car.cartItemId,
+			car.quantity,
+			car.bid,
+			car.uid,
+			bk.bid bookid,
+			bk.bname,
+			bk.author,
+			bk.price,
+			bk.currPrice,
+			bk.discount,
+			bk.press,
+			bk.publishtime,
+			bk.edition,
+			bk.pageNum,
+			bk.wordNum,
+			bk.printtime,
+			bk.booksize,
+			bk.paper,
+			bk.cid,
+			bk.image_w,
+			bk.image_b,
+			bk.orderBy
+	
+		from 
+			t_cartitem car 
+		inner JOIN
+			t_book bk
+		on 
+			car.bid=bk.bid
+		where 
+	 		 uid=#{uid}
+  	</select>
+  	<!-- 根据购物车号删除 -->
+  	<delete id="deleteOneCarById" parameterType="String">
+  		DELETE from 
+			t_cartitem
+		where 
+			cartItemId = #{cartItemId}
+  	</delete>
+  	<!-- 批量删除购物车 -->
+  	<delete id="deleteBatch" parameterType="com.njwangbo.vo.CartItemVo">
+  		delete from
+  			t_cartitem
+  		
+  		<where>
+  			<if test="null != choose">
+  				<foreach collection="choose" item="id" open="cartItemId in (" close=")" separator=",">
+  					#{id}
+  				</foreach>
+  			</if>
+  		</where>
+  	</delete>
+  	<!-- 根据购物车id修改购物车书的数量 -->
+  	<update id="modifyQuantity" parameterType="CartItem">
+  		UPDATE
+			t_cartitem
+		SET
+			quantity=#{quantity}
+		WHERE
+			cartItemId=#{cartItemId}
+  	</update>
+  	
+  	<!-- 根据购物车id,显示提交订单页面的信息 -->
+  	<select id="selectCartItemVoOne" parameterType="String" resultType="com.njwangbo.vo.CartItemVo">
+  		select
+  		  c.cartItemId,
+  		  c.quantity,
+  		  b.bid,
+  		  b.bname,
+  		  b.currPrice,
+  		  b.image_b
+  		from 
+  		  t_cartitem c 
+  		join 
+  		  t_book b 
+  		where 
+  		  c.bid=b.bid 
+  		and
+  		   c.cartItemId=#{cartItemId} 
+  	</select>
+  	<!-- 添加书籍到购物车 -->
+  	<insert id="insertBookIntoCar" parameterType="com.njwangbo.vo.CartItemVo">
+  		insert INTO
+			t_cartitem(cartItemId,quantity,bid,uid)
+		values
+			(#{cartItemId},#{quantity},#{bid},#{uid})
+  	</insert>
+  	<!-- 根据bid和uid判断购物车中是否存在 -->
+  	<select id="selectIsExist" parameterType="com.njwangbo.vo.CartItemVo" resultType="com.njwangbo.po.CartItem">
+  		SELECT
+			cartItemId,
+			quantity,
+			bid,
+			uid
+		FROM
+			t_cartitem
+		where 
+			bid=#{bid}
+		AND
+			uid=#{uid}
+  	</select>
+  	
+  </mapper>

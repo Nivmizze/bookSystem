@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+.imgdiv{
+	width: 100;
+	height: 100;
+	float: left;
+}
+
+.textdiv{
+	width:50%;
+	margin-left:25%;
+	float: left;
+}
+
+
+
+.updatediv{
+	width:140px;
+	font-size: 25;
+	
+}
+
+.deletediv{
+	width:140px;
+	font-size: 25;
+}

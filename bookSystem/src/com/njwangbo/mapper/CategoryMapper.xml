@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace：需要和Mapper接口的名字(全路径名)保持一致 -->
+<mapper namespace="com.njwangbo.mapper.CategoryMapper">
+	<!-- 查询所有分类 -->
+	<select id="findAllCategory" resultType="Category">
+		select cid,cname,pid,des from t_category
+	</select>
+	
+	<!-- 添加一级分类 -->
+	<insert id="addCategorya" parameterType="Category">
+		insert into t_category (cid,cname,des) values (#{cid},#{cname},#{des})
+	</insert>
+	
+	<!-- 添加二级分类 -->
+	<insert id="addCategoryb" parameterType="Category">
+		insert into t_category (cid,cname,pid,des) values (#{cid},#{cname},#{pid},#{des})
+	</insert>
+	
+	<!-- 删除分类 -->
+	<delete id="deleteCategory" parameterType="String">
+		delete from t_category where cid = #{cid}
+	</delete>
+	
+	<!-- 修改一级分类 -->
+	<update id="updateCategorya" parameterType="Category">
+		update t_category set cname = #{cname},des = #{des} where cid = #{cid}
+	</update>
+	
+	<!-- 修改二级分类 -->
+	<update id="updateCategoryb" parameterType="Category">
+		update t_category set cname = #{cname},pid = #{pid},des = #{des} where cid = #{cid}
+	</update>
+	
+	<!-- 根据cid查询分类 -->
+	<select id="findCategoryByCid" parameterType="String" resultType="Category">
+		select cid,cname,pid,des from t_category where cid = #{cid}
+	</select>
+	
+	<!-- 根据cid查询分类 -->
+	<select id="findCategoryByPid" parameterType="String" resultType="Category">
+		select cid,cname,pid,des from t_category where pid = #{cid}
+	</select>
+</mapper>

@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+<!--标题-->
+.bookname{
+	margin-left: 40%;
+}
+
+.picleft{
+	margin-left: 10%;
+	/* border: 1px solid black; */
+	width: 400px;
+	height: 400px;
+	float: left;
+}
+.showonepic{
+	 margin: 0 auto;
+	 width:100%;
+}
+
+.showoneinfo{
+	/* margin-left: 45%; */
+	width: 40%;
+	height: auto;
+	float: left;
+}
+.bookinfo{
+	margin-left: 40px;
+	margin-top: 15px;
+}
+
+.joincar{
+	/* margin-left: 200px; */
+	position: absolute;
+    top: 70%;
+    left: 43%;
+    height: 80px;
+    width: 43%;
+    background-color: #efe6e6;
+}
+/* .buymany{
+	margin-left: 50px;
+} */
+.buyaa{
+	
+	background: #aaa;
+	font-size: 23px;
+	padding:10px 15px;
+	color:#fff;
+	border:none;
+	outline:none;
+	border-radius:2px;
+ /*     margin-top: 10px;
+    margin-left: 80px; */
+}
+.currprice{
+	font-size: 2rem;
+	color: red;
+}
+.paseprice{
+	text-decoration: line-through;
+}
+.discount{
+	color: red;
+}

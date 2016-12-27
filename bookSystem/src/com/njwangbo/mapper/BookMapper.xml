@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace：需要和Mapper接口的名字(全路径名)保持一致 -->
+<mapper namespace="com.njwangbo.mapper.BookMapper">
+
+	<resultMap type="Book" id="BookCategory">
+		<id column="bid" property="bid"/>
+		<association property="category" javaType="Category">
+			<id column="cid" property="cid"/>
+		</association>
+	</resultMap>
+
+	<!-- 查询所有图书 -->
+	<select id="findAllBook" resultType="Book" resultMap="BookCategory">
+		select t_book.* limit #{pageNum},4
+	</select>
+	
+	<!-- 添加图书 -->
+	<insert id="addBook" parameterType="Book">
+		insert into t_book (bid,bname,author,price,currPrice,discount,press,
+		publishtime,edition,pageNum,wordNum,printtime,booksize,paper,cid,image_w,image_b) 
+		values (#{bid},#{bname},#{author},#{price},#{currPrice},#{discount},
+		#{press},#{publishtime},#{edition},#{pageNum},#{wordNum},#{printtime},
+		#{booksize},#{paper},#{cid},#{image_w},#{image_b})
+	</insert>
+	
+	<!-- 删除图书 -->
+	<delete id="deleteBook" parameterType="String">
+		delete from t_book where bid = #{bid}
+	</delete>
+	
+	<!-- 修改图书 -->
+	<update id="updateBook" parameterType="Book">
+		update t_book set bname = #{bname},author = #{author},price = #{price},
+		currPrice = #{currPrice},discount = #{discount},press = #{press},
+		publishtime = #{publishtime},edition = #{edition},pageNum = #{pageNum},
+		wordNum = #{wordNum},printtime = #{printtime},booksize = #{booksize},
+		paper = #{paper},cid = ${cid} where bid = #{bid}
+	</update>
+	
+	<!-- 根据bid查询图书 -->
+	<select id="findBookByBid" resultType="Book" parameterType="String">
+		select * from t_book where bid = #{bid}
+	</select>
+	
+	<!-- 根据cid查询图书 -->
+	<select id="findBookByCid" resultType="Book" parameterType="String">
+		select * from t_book where cid = #{cid}
+	</select>
+
+	
+	<!-- 根据cid分页查询图书 -->
+	<select id="findBookByCidPage" resultType="Book" parameterType="Book">
+		select * from t_book where cid = #{cid} limit #{num},4
+	</select>
+	
+	<select id="getCountByCid" resultType="int" parameterType="Book">
+		select count(*) from t_book where cid = #{cid}
+	</select>
+	
+	<!-- 模糊查询 -->
+	<select id="showAllBookBySome" parameterType="Book" resultType="Book">
+	   select * from t_book
+	  <where>
+	     <if test="null != bname and ''!=bname">
+	        and bname like '%${bname}%'
+	     </if>
+	      <if test="null !=author and ''!=author">
+	        and author like '%${author}%'
+	       </if>
+	       <if test="null != press and ''!=press">
+	         and press like '%${press}%'
+	      </if>
+	  </where>
+	  limit #{num},4
+	</select>
+
+	<select id="AllCount" parameterType="Book" resultType="int">
+	  select  count(*) from t_book
+	    <where>
+	     <if test="null != bname and ''!=bname">
+	        and bname like '%${bname}%'
+	     </if>
+	      <if test="null !=author and ''!=author">
+	        and author like '%${author}%'
+	       </if>
+	       <if test="null != press and ''!=press">
+	         and press like '%${press}%'
+	      </if>
+	  </where>
+	</select>
+	
+	<update id="updatebstatus" parameterType="String">
+	   update t_book set bstatus = 1 where bid = #{bid}
+	</update>
+</mapper>

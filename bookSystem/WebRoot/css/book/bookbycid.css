@@ -1,0 +1,50 @@
+@CHARSET "UTF-8";
+.henxian p{
+	width:100%;
+	height: auto;
+	background: #eee;
+}
+.henxian p:after{
+	content:'';
+	display:block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.henxian button{
+	font-size: 15px;
+	border-radius:5px;
+	padding: 6px 15px;
+	outline: none;
+	border:1px solid #aaa;
+	background: #fff;
+	margin:10px;
+	float:right;
+	cursor:pointer;
+	display: inline-block;
+}
+
+.henxian button:active{
+	background: #eee;
+}
+.henxian span,.henxian input{
+	float:right;
+}
+.henxian span{
+	font-size: 15px;
+	letter-spacing: 1px;
+	display:inline-block;
+	line-height: 55px
+}
+.henxian input{
+	width:30px;
+	height:30px;
+	display:inline-block;
+	margin: 13px 5px;
+}
+.henxian{
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+}

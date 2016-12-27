@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+.*{padding: 0px;margin: 0px;}
+.body{width: 80%;height: auto;background-color: #F6EFE4;margin: 0 auto;}
+.body1{margin: 0 20px;top: 20px;}
+.body2{width: 98%;height:auto;background-color: white;margin: 0 auto;padding-bottom: 50px;}
+.body3{width: 98%;height: 8%; background-color: white;margin: -12px auto;text-align:right;}
+.body4{width: 98%;height:10%; background-color: white;margin: 0 auto;}
+#body5{width: 80%;height: 75%;border: 1px #4fc3cc solid;margin: 5px 4px;font-size: 20px;}
+.body6{width: 98%;height: 10%;background-color: white;margin:12px auto;}
+.body7{background-image: url('/bookshop/images/huang_2_btn.jpg');background-repeat:no-repeat;color:white;
+font-size: 21px; width:142px;height:33px;text-align: center;margin-left: 80%;}
+a{text-decoration: none;}
+
+.head{width: 100%;height: 100%;}
+.head1{width: 69%;height: 70%;margin: 0 auto;background-color: #F6EFE4;}
+.head2{margin-left: 22px;font-size: 20px;}
+.head3{width:99%; height:75%;background-color: white;margin: 0 auto;}
+.head4{width: 40%;height: 100%;float: left;}
+.head5{width: 60%;height: 100%;float: left;}
